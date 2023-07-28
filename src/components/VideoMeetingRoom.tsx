@@ -58,7 +58,17 @@ const VideoMeetingRoom = ({
 
   // Function to create and set up the peer connection
   const setupPeerConnection = () => {
-    const peerConnection = new RTCPeerConnection();
+    const peerConnection = new RTCPeerConnection({
+      iceServers: [
+        // Add your ICE servers here
+        { urls: "stun:stun.example.com" }, // Example STUN server
+        {
+          urls: "turn:turn.example.com",
+          username: "your-username",
+          credential: "your-password",
+        }, // Example TURN server with credentials
+      ],
+    });
 
     // Add the user's media stream to the peer connection (only once during setup)
     if (
