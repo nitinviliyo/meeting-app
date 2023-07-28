@@ -16,13 +16,11 @@ const VideoMeetingRoom = ({
   const peerConnectionRef = useRef<RTCPeerConnection | null>(null);
 
   useEffect(() => {
+    console.log("Room Id:", roomId, "User Id:", userId);
     // Connect to the signaling server using Socket.IO
-    socketRef.current = io(
-      "wss://b06a-2402-e280-3d6a-362-acb5-a6f8-fd13-6085.ngrok-free.app",
-      {
-        transports: ["websocket"],
-      }
-    );
+    socketRef.current = io("http://localhost:8080", {
+      transports: ["websocket"],
+    });
 
     socketRef.current?.on("connection", () => {
       console.log("WebSocket connection successful.");

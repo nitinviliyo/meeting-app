@@ -9,7 +9,9 @@ interface TestWebSocketProps {
 
 const TestWebSocket: React.FC<TestWebSocketProps> = ({ url }) => {
   useEffect(() => {
-    const socket: Socket = io(url);
+    const socket: Socket = io(url, {
+      transports: ["websocket"],
+    });
 
     socket.on("connect", () => {
       console.log("WebSocket connection successful.");
