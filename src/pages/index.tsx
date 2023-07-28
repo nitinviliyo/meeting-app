@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import VideoMeetingRoom from "../components/VideoMeetingRoom";
+import TestWebSocket from "@/components/TestWebSocket";
 
 function generateString(length: number): string {
   let result = " ";
@@ -27,6 +28,7 @@ const Home = () => {
       ) : (
         <h1>Please specify a valid room ID in the URL.</h1>
       )}
+      <TestWebSocket url="https://b06a-2402-e280-3d6a-362-acb5-a6f8-fd13-6085.ngrok-free.app/" />
     </div>
   );
 };

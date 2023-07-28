@@ -18,11 +18,17 @@ const VideoMeetingRoom = ({
   useEffect(() => {
     // Connect to the signaling server using Socket.IO
     socketRef.current = io(
-      "https://b06a-2402-e280-3d6a-362-acb5-a6f8-fd13-6085.ngrok-free.app",
+      "wss://b06a-2402-e280-3d6a-362-acb5-a6f8-fd13-6085.ngrok-free.app",
       {
         transports: ["websocket"],
       }
     );
+
+    socketRef.current?.on("connection", () => {
+      console.log("WebSocket connection successful.");
+    });
+
+    socketRef.current;
 
     // Join the video meeting room with the provided roomId and userId
     socketRef.current.emit("join-room", roomId, userId);
